@@ -1,0 +1,672 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Caesarean Section Prediction Model by DRobson74</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<script type="text/javascript" language="javascript">
+/* Script Name: Caesarean Prediction Model - Multiparous Antepartum
+*/
+
+//Single main function - checks which buttons and selects a drop down option and works out the predicted likelihood of Caesarean Section Delivery
+
+function calculate() {
+
+
+
+
+        // Declare variables.
+        var DropDownBox;                        // Used to determine which drop down option is selected
+        var Age;                                        // Patient age
+        var bmi;                                        // Patient BMI
+        var radiobutton;                        // Used to determine if checkbox is checked
+        var button;                                // Used to select a yes or no answer
+        var selectedAge;                                // Age of the Mother
+        var selectedBMI;                                 // BMI of the Mother
+        var IndigenousorTorresStraitIslander = 2;// Indigenous or Torres Strait Islander Mother
+        var Smoker                        = 2;        // If the mother is a Smoker
+        var AssistedConception                = 2;         // If assisted conception was used
+        var MaternalCountryofBirth        = 0;        // Maternal Country of Birth
+        var OceaniaAntarctica;                        // Oceania & Antarctica
+        var SouthEastAsia;                        // South East Asia
+        var SouthernCentralAsia;                // Southern & Central Asia
+        var SubSaharanAfrica;                        // Sub Saharan Africa
+        var NoneoftheAbove1;                        // None of the Above
+        var MaritalStatus                = 0;        // Marital Status of mother
+        var Divorced;                                // Divorced
+        var NeverMarried;                        // Never Married
+        var InSeparation;                        // In Separation
+        var NoneoftheAbove2;                        // None of the Above
+        var DeliveryataPrivateHospital        = 2;         // Delivery at a Private Hospital
+        var AntenatalCare                = 0;        // Antenatal Care Used
+        var PrivateMidwife;                        // Private Midwife
+        var PublicMidwife;                        // Public Midwife
+        var GP;                                        // GP
+        var NoneoftheAbove3;                        // None of the Above
+        var Asthma                        = 2;        // Asthma
+        var Depression                = 2;        // Depression
+        var PreexistingHypertension        = 2;        // Pre-existingHypertension
+        var TypeIDiabetesMellitus        = 2;        // Type I Diabetes Mellitus
+        var TypeIIDiabetesMellitus        = 2;        // Type II Diabetes Mellitus
+        var LastBirthMethod                = 0;        // Last Birth Method
+        var ForcepsDelivery;                        // Forceps Delivery
+        var VacuumDelivery;                        // Vacuum Delivery
+        var LowerCaesareanSectionDelivery;        // Lower Caesarean Section Delivery
+        var ClassicalCaesareanSectionDelivery;        // Classical Caesarean Section Delivery
+        var NoneoftheAbove4;                        // None of the Above
+        var likelihood;                                // Actual prediction of CSD
+        var varx;                                        // Temp variable for calculation.
+
+
+
+
+
+// Check patient age dropdown box.
+DropDownBox = document.getElementById("Age");
+Age = DropDownBox.options[DropDownBox.selectedIndex].text;
+
+
+
+
+// Check patient BMI.
+DropDownBox = document.getElementById("BMI");
+bmi = DropDownBox.options[DropDownBox.selectedIndex].text;
+
+
+
+
+ 
+// Checks to see which radiobutton is selected in Indigenous&/orTorresStraitIslander.
+for (i = 1; i <= 2; i++) {                                
+radioButton = document.getElementById("indig" + i);
+        if (radioButton.checked == true) {
+                // Assigns value according to which radio button was selected.
+                IndigenousorTorresStraitIslander = radioButton.value;
+        }
+}
+if (IndigenousorTorresStraitIslander == 2) {
+                alert("No Indigenous status selected!");
+                return;
+}
+
+        
+        
+// Checks to see which radiobutton is selected in Smoker.
+for (i = 1; i <= 2; i++) {                                
+radioButton = document.getElementById("smoker" + i);
+        if (radioButton.checked == true) {
+                // Assigns value according to which radio button was selected.
+                Smoker = radioButton.value;
+        }
+}
+if (Smoker == 2) {
+                alert("No Smoker status selected!");
+                return;
+}
+
+
+
+
+// Checks to see which radiobutton is selected in AssistedConception.
+for (i = 1; i <= 2; i++) {                                
+radioButton = document.getElementById("AssistedConception" + i);
+        if (radioButton.checked == true) {
+                // Assigns value according to which radio button was selected.
+                AssistedConception = radioButton.value;
+        }
+}
+if (AssistedConception == 2) {
+                alert("No assisted conception status selected!");
+                return;
+}
+
+
+
+// Checks to see which radiobutton is selected in MaternalCountryofBirth.
+for (i = 1; i <= 5; i++) {
+radioButton = document.getElementById("MaternalCountryofBirth" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                MaternalCountryofBirth = radioButton.value;
+                if (MaternalCountryofBirth ==1) {
+                OceaniaAntarctica =1;
+                SouthEastAsia =0;
+                SouthernCentralAsia =0;
+                SubSaharanAfrica =0;
+                }
+                if (MaternalCountryofBirth ==2) {
+                OceaniaAntarctica =0;
+                SouthEastAsia =1;
+                SouthernCentralAsia =0;
+                SubSaharanAfrica =0;
+                }
+                if (MaternalCountryofBirth ==3) {
+                OceaniaAntarctica =0;
+                SouthEastAsia =0;
+                SouthernCentralAsia =1;
+                SubSaharanAfrica =0;
+                }
+                if (MaternalCountryofBirth ==4) {
+                OceaniaAntarctica =0;
+                SouthEastAsia =0;
+                SouthernCentralAsia =0;
+                SubSaharanAfrica =1;
+                        }
+                if (MaternalCountryofBirth ==5) {
+                OceaniaAntarctica =0;
+                SouthEastAsia =0;
+                SouthernCentralAsia =0;
+                SubSaharanAfrica =0;
+                NoneoftheAbove1 =1;
+                }
+                
+        }
+
+}
+if (MaternalCountryofBirth == 0) {
+                alert("No Maternal Country of Birth is selected!");
+                return;
+}
+
+
+
+
+// Checks to see which radiobutton is selected in MaritalStatus.
+for (i = 1; i <= 4; i++) {
+radioButton = document.getElementById("MaritalStatus" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                MaritalStatus = radioButton.value;
+                if (MaritalStatus ==1) {
+                        Divorced = 1;
+                        NeverMarried =0;
+                        InSeparation=0;
+                }
+                if (MaritalStatus ==2) {
+                        Divorced = 0;
+                        NeverMarried = 1;
+                        InSeparation=0;
+                }
+                if (MaritalStatus ==3) {
+                        Divorced = 0;
+                        NeverMarried = 0;
+                        InSeparation = 1;
+                }
+                if (MaritalStatus ==4) {
+                        Divorced = 0;
+                        NeverMarried = 0;
+                        InSeparation = 0;
+                        NoneoftheAbove2 = 1;
+                        }
+        }
+
+}
+if (MaritalStatus == 0) {
+                alert("No Marital status selected!");
+                return;
+}
+
+
+
+
+
+
+// Checks to see which radiobutton is selected in DeliveryataPrivateHospital.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("DeliveryataPrivateHospital" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        DeliveryataPrivateHospital = radioButton.value;
+                }
+        }
+
+if (DeliveryataPrivateHospital == 2) {
+                alert("No Delivery at a Private Hospital status selected!");
+                return;
+}
+
+
+
+
+
+// Checks to see which radiobutton is selected in AntenatalCare.
+for (i = 1; i <= 4; i++) {
+radioButton = document.getElementById("AntenatalCare" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.                
+                AntenatalCare = radioButton.value;
+                if (AntenatalCare ==1) {
+                        PrivateMidwife = 1;
+                        PublicMidwife =0;
+                        GP =0;
+                }
+                if (AntenatalCare ==2) {
+                        PrivateMidwife = 0;
+                        PublicMidwife =1;
+                        GP =0;
+                }
+                if (AntenatalCare ==3) {
+                        PrivateMidwife = 0;
+                        PublicMidwife =0;
+                        GP =1;
+                }
+                if (AntenatalCare ==4) {
+                        PrivateMidwife = 0;
+                        PublicMidwife =0;
+                        GP =0;
+                        NoneoftheAbove3 =1;
+                }
+        }
+}
+if (AntenatalCare == 0) {
+                alert("No Antenatal Care selected!");
+                return;
+}
+
+
+
+
+
+
+// Checks to see which radiobutton is selected in Asthma.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("Asthma" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        Asthma = radioButton.value;
+                }
+        }
+if (Asthma == 2) {
+        alert("No Asthma status selected!");
+        return;
+}
+
+
+
+
+
+
+
+
+// Checks to see which radiobutton is selected in Depression.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("Depression" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        Depression = radioButton.value;
+                }
+        }
+if (Depression == 2) {
+        alert ("No Depression status selected!");
+        return;
+}
+
+
+
+
+
+
+
+// Checks to see which radiobutton is selected in PreexistingHypertension.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("PreexistingHypertension" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        PreexistingHypertension = radioButton.value;
+                }
+        }
+if (PreexistingHypertension == 2) {
+        alert ("No Pre-existing Hypertension status selected!");
+        return;
+}
+
+
+
+
+
+
+
+
+// Checks to see which radiobutton is selected in TypeIDiabetesMellitus.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("TypeIDiabetesMellitus" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        TypeIDiabetesMellitus = radioButton.value;
+                }
+        }
+if (TypeIDiabetesMellitus == 2) {
+        alert ("No Type I Diabetes Mellitus status selected!");
+        return;
+}
+
+
+
+
+
+
+
+// Checks to see which radiobutton is selected in TypeIIDiabetesMellitus.
+        for (i = 1; i <= 2; i++) {                                
+        radioButton = document.getElementById("TypeIIDiabetesMellitus" + i);
+                if (radioButton.checked == true) {
+                        // Assigns value according to which radio button was selected.
+                        TypeIIDiabetesMellitus = radioButton.value;
+                }
+        }
+if (TypeIIDiabetesMellitus == 2) {
+        alert ("No Type II Diabetes Mellitus status selected!");
+        return;
+}
+
+
+
+
+
+// Checks to see which radiobutton is selected in LastBirthMethod.
+for (i = 1; i <= 5; i++) {
+radioButton = document.getElementById("LastBirthMethod" + i);
+        if (radioButton.checked == true) {
+                //Assigns value according to which radio button was selected.
+                LastBirthMethod = radioButton.value;
+                if (LastBirthMethod ==1) {
+                        ForcepsDelivery = 1;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =0;
+                }
+                if (LastBirthMethod ==2) {
+                        ForcepsDelivery =0;
+                        VacuumDelivery =1;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =0;
+                }
+                if (LastBirthMethod ==3) {
+                        ForcepsDelivery =0;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =1;
+                }
+                if (LastBirthMethod ==4) {
+                        ForcepsDelivery = 0;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =1;
+                        LowerCaesareanSectionDelivery =0;
+                }
+                if (LastBirthMethod ==5) {
+                        ForcepsDelivery = 0;
+                        VacuumDelivery =0;
+                        ClassicalCaesareanSectionDelivery =0;
+                        LowerCaesareanSectionDelivery =0;
+                        NoneoftheAbove4 =1;
+                }
+        }
+}
+if (LastBirthMethod == 0) {
+                alert("No Last Birth Method selected!");
+                return;
+}
+
+
+
+
+
+//Calculate LIKELIHOOD.
+
+varx = -3.692 + (0.000372*bmi) + (0.046*Age) + (0.126*IndigenousorTorresStraitIslander) + (0.076*Smoker) + (0.509*AssistedConception) + (0.321*Asthma) + (0.246*Depression) + (0.543*PreexistingHypertension) + (1.442*TypeIDiabetesMellitus) + (0.929*TypeIIDiabetesMellitus) + (0.903*ForcepsDelivery) + (0.461*VacuumDelivery) + (4.278*LowerCaesareanSectionDelivery) + (5.573*ClassicalCaesareanSectionDelivery) + (0.402*Divorced) + (0.122*NeverMarried) + (0.254*InSeparation) + (0.145*DeliveryataPrivateHospital) + (-0.961*PrivateMidwife) + (-0.389*PublicMidwife) + (-0.261*GP) + (0.148*OceaniaAntarctica) + (0.312*SouthEastAsia) + (0.236*SouthernCentralAsia) + (0.385*SubSaharanAfrica);
+
+vary = 1 + Math.exp(varx)
+
+varz = Math.exp(varx)/vary
+
+
+
+likelihood = 100*varz;
+
+likelihood = likelihood.toFixed(2);
+
+        
+alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
+
+        
+
+        
+                
+        
+} // End of predict()
+        
+</script>
+
+
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Caesarean Section Prediction Model</h1>
+        <p>Antepartum - Multiparous Women</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/DRobson74/AntepartumMultiparous" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/DRobson74/AntepartumMultiparous/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/DRobson74/AntepartumMultiparous/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+       <section>
+        <h3>
+<p> Please fill in the follow details regarding your patient, then click calculate</p>
+
+<form>
+<p> Age:
+<select id="Age">
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>
+    <option>24</option>
+    <option>25</option>
+    <option>26</option>
+    <option>27</option>
+    <option>28</option>
+    <option>29</option>
+    <option>30</option>
+    <option>31</option>
+    <option>32</option>
+    <option>33</option>
+    <option>34</option>
+    <option>35</option>
+    <option>36</option>
+    <option>37</option>
+    <option>38</option>
+    <option>39</option>
+    <option>40</option>
+    <option>41</option>
+    <option>42</option>
+    <option>43</option>
+    <option>44</option>
+    <option>45</option>
+</select>
+</p>
+
+
+
+<p> BMI:
+<select id = "BMI">
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+    <option>15</option>
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>
+    <option>24</option>
+    <option>25</option>
+    <option>26</option>
+    <option>27</option>
+    <option>28</option>
+    <option>29</option>
+    <option>30</option>
+    <option>31</option>
+    <option>32</option>
+    <option>33</option>
+    <option>34</option>
+    <option>35</option>
+    <option>36</option>
+    <option>37</option>
+    <option>38</option>
+    <option>39</option>
+    <option>40</option>
+    <option>41</option>
+    <option>42</option>
+    <option>43</option>
+    <option>44</option>
+    <option>45</option>
+    <option>46</option>
+    <option>47</option>
+    <option>48</option>
+    <option>49</option>
+    <option>50</option>
+</select>
+</p>
+
+
+
+<p> Indigenous &/or Torres Strait Islander: <br />
+<input type="radio" id="indig1" name = "indig" value="1">Yes<br>
+<input type = "radio" id="indig2" name = "indig" value="0">No<br>
+</p>
+
+ 
+<p> Smoker:<br />
+<input type="radio" id="smoker1" name = "smoker" value="1">Yes<br>
+<input type ="radio" id="smoker2" name = "smoker" value="0">No<br>
+</p>
+
+
+
+<p> Assisted Conception:<br />
+<input type="radio" id="AssistedConception1" name = "AssistedConception" value="1">Yes<br>
+<input type ="radio" id="AssistedConception2" name = "AssistedConception" value="0">No<br>
+</p>
+
+
+
+<p> Maternal Country of Birth:<br />
+<input type ="radio" id="MaternalCountryofBirth1" name = "MaternalCountryofBirth" value="1">Oceania & Antarctica<br>
+<input type ="radio" id="MaternalCountryofBirth2" name = "MaternalCountryofBirth" value="2">South East Asia<br>
+<input type ="radio" id="MaternalCountryofBirth3" name = "MaternalCountryofBirth" value="3">South & Central Asia<br>
+<input type ="radio" id="MaternalCountryofBirth4" name = "MaternalCountryofBirth" value="4">
+Sub-saharan Africa<br>
+<input type ="radio" id="MaternalCountryofBirth5" name = "MaternalCountryofBirth" value="5">None of the Above<br>
+</p>
+
+
+<p> Marital Status:<br />
+<input type ="radio" id="MaritalStatus1" name = "MaritalStatus" value="1">Divorced<br>
+<input type ="radio" id="MaritalStatus2" name = "MaritalStatus" value="2">Never Married<br>
+<input type ="radio" id="MaritalStatus3" name = "MaritalStatus" value="3">In Separation<br>
+<input type ="radio" id="MaritalStatus4" name = "MaritalStatus" value="4">None of the Above<br>
+</p>
+
+
+<p> Delivery at a Private Hospital:<br />
+<input type="radio" id="DeliveryataPrivateHospital1" name = "DeliveryataPrivateHospital" value="1">Yes<br>
+<input type="radio" id="DeliveryataPrivateHospital2" name = "DeliveryataPrivateHospital" value="0">No<br>
+</p>
+
+
+<p> Antenatal Care:<br />
+<input type ="radio" id="AntenatalCare1" name = "AntenatalCare" value="1">Private Midwife<br>
+<input type ="radio" id="AntenatalCare2" name = "AntenatalCare" value="2">Public Midwife<br>
+<input type ="radio" id="AntenatalCare3" name = "AntenatalCare" value="3">GP<br>
+<input type ="radio" id="AntenatalCare4" name ="AntenatalCare" value="4">None of the Above<br>
+</p>
+
+ 
+<p> Asthma:<br />
+<input type="radio" id="Asthma1" name = "Asthma" value="1">Yes<br>
+<input type="radio" id="Asthma2" name = "Asthma" value="0">No<br>
+</p>
+
+
+<p> Depression:<br />
+<input type="radio" id="Depression1" name = "Depression" value="1">Yes<br>
+<input type="radio" id="Depression2" name = "Depression" value="0">No<br>
+</p>
+
+
+<p> Pre-existing Hypertension:<br />
+<input type="radio" id="PreexistingHypertension1" name = "PreexistingHypertension" value="1">Yes<br>
+<input type="radio" id="PreexistingHypertension2" name = "PreexistingHypertension" value="0">No<br>
+</p>
+
+
+<p> Type I Diabetes Mellitus:<br />
+<input type="radio" id="TypeIDiabetesMellitus1" name = "TypeIDiabetesMellitus" value="1">Yes<br>
+<input type="radio" id="TypeIDiabetesMellitus2" name = "TypeIDiabetesMellitus" value="0">No<br>
+</p>
+
+
+<p> Type II Diabetes Mellitus:<br />
+<input type="radio" id="TypeIIDiabetesMellitus1" name = "TypeIIDiabetesMellitus" value="1">Yes<br>
+<input type="radio" id="TypeIIDiabetesMellitus2" name = "TypeIIDiabetesMellitus" value="0">No<br>
+</p>
+
+
+<p> Last Birth Method:<br />
+<input type ="radio" id="LastBirthMethod1" name = "LastBirthMethod" value="1">Forceps Delivery<br>
+<input type ="radio" id="LastBirthMethod2" name = "LastBirthMethod" value="2">Vacuum Delivery<br>
+<input type ="radio" id="LastBirthMethod3" name = "LastBirthMethod" value="3">Lower Caesarean Section Delivery<br>
+<input type ="radio" id="LastBirthMethod4" name = "LastBirthMethod" value="4">Classical Caesarean Section Delivery<br>
+<input type ="radio" id="LastBirthMethod5" name = "LastBirthMethod" value="5">None of the Above<br>
+</p>
+
+<input type="button" value="Calculate" onclick="calculate();"/>
+
+
+
+</form>
+
+<td tex-align:left;>
+<br> Dr Danielle Robson </td>
+<br> James Cook University </td>
+<br> Townsville </td>
+<br> Australia </td>
+<br> Contact: danielle.robson@my.jcu.edu.au </br></td>
+</br></td>
+
+<b> Disclaimer: The result from the Caesarean Section Prediction model has been calculated using data from Queensland 2010-2012 and analysed in SPSS Version 21.0. The calculator has been carefully tested and has been found to be reliable, but is yet to be validated against a different cohort. We do not take legal or financial responsibility for miscalculations. The responsibility lies wholly on the user of this calculator. </b> </tr>
+
+
+  </body>
+</html>
