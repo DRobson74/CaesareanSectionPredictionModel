@@ -1,8 +1,8 @@
-$ git clone --bare https://https://github.com/DRobson74/AntepartumMultiparous.git
+$ git clone --bare https://https://github.com/DRobson74/AntepartumMultiparous
 # Make a bare clone of the repository
 
 $ cd AntepartumMultiparous.git
-$ git push --mirror https://github.com/DRobson74/CaesareanSectionPredictionModel.git
+$ git push --mirror https://github.com/DRobson74/CaesareanSectionPredictionModel
 # Mirror-push to the new repository
 
 $ git clone --mirror https://github.com/DRobson74/repository-to-mirror.git
