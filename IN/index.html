@@ -27,6 +27,7 @@ function calculate() {
 	// Declare variables.
 	var DropDownBox;			// Used to determine which drop down option is selected
 	var Age;				// Patient age	
+	var BMI; 				// BMI
 	var radiobutton;			// Used to determine if checkbox is checked
 	var button;				// Used to select a yes or no answer
 	var selectedAge;			// Age of the Mother
@@ -72,6 +73,9 @@ function calculate() {
 DropDownBox = document.getElementById("Age");
 Age = DropDownBox.options[DropDownBox.selectedIndex].text;
 
+// Check patient BMI dropdown box.
+DropDownBox = document.getElementById("BMI");
+BMI = DropDownBox.options[DropDownBox.selectedIndex].text;
 
 // Checks to see which radiobutton is selected in Indigenous&/orTorresStraitIslander.
 for (i = 1; i <= 2; i++) {				
@@ -412,7 +416,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -1.101 + (0.0643*Age) + (0.211*IndigenousorTorresStraitIslander) + (0.174*AssistedConception) + (-0.180*NorthAfricaMiddleEast) + (-0.168*SouthEastAsia) + (0.334*SouthernCentralAsia) + (0.212*SubSaharanAfrica) + (0.457*DeliveryataPrivateHospital) +
+varx = -1.101 + (0.0643*Age) + (0.0518*BMI) + (0.211*IndigenousorTorresStraitIslander) + (0.174*AssistedConception) + (-0.180*NorthAfricaMiddleEast) + (-0.168*SouthEastAsia) + (0.334*SouthernCentralAsia) + (0.212*SubSaharanAfrica) + (0.457*DeliveryataPrivateHospital) +
 (-0.194*PublicMidwife) + (-0.287*GP) + (0.191*Asthma) + (1.03*TypeIDiabetesMellitus) + (0.742*TypeIIDiabetesMellitus) +  (AROM*-0.278) + (0.259*Prost) + + (-0.266*CTG) + (-0.661*FSE) + (0.122*GD) + (0.396*GestHTN) + (PreEc*0.739) + (-1.133*NPA) + (-0.313*PA)  + (2.88*Breech) + (2.59*Brow) + (1.99*Face) + (2.21*Shoulder);
 
 vary = 1 + Math.exp(varx)
@@ -439,7 +443,7 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 
       <header>
         <h1>Caesarean Section Prediction Model</h1>
-        <p>Intrapartum - Nulliparous Women</p>
+        <p>Early Labour - Nulliparous Women</p>
       </header>
       
  <div id="banner">
@@ -496,6 +500,50 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
     <option>43</option>
     <option>44</option>
     <option>45</option>
+</select>
+</p>
+
+<p> BMI:
+<select id="BMI">
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+    <option>15</option>
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>
+    <option>24</option>
+    <option>25</option>
+    <option>26</option>
+    <option>27</option>
+    <option>28</option>
+    <option>29</option>
+    <option>30</option>
+    <option>31</option>
+    <option>32</option>
+    <option>33</option>
+    <option>34</option>
+    <option>35</option>
+    <option>36</option>
+    <option>37</option>
+    <option>38</option>
+    <option>39</option>
+    <option>40</option>
+    <option>41</option>
+    <option>42</option>
+    <option>43</option>
+    <option>44</option>
+    <option>45</option>
+    <option>46</option>
+    <option>47</option>
+    <option>48</option>
+    <option>49</option>
+    <option>>50</option>
 </select>
 </p>
 
