@@ -64,7 +64,7 @@ function calculate() {
 	var Brow;				// Brow
 	var Shoulder;				// Shoulder
 	var Face;				// Face
-	var NoneoftheAbove3;			// None of the Above
+	var Vertex;				// Vertex
 	var varx;				// Temp variable for calculation.
 	var vary;				// Temp variable for calculation.
 	var varz; 				// Temp variable for calculation.
@@ -401,31 +401,35 @@ radioButton = document.getElementById("Presentation" + i);
 			Brow =0;
 			Face =0;
 			Shoulder = 0;
+			Vertex = 0;
 		}
 		if (Presentation ==2) {
 			Breech = 0;
 			Brow =1;
 			Face =0;
 			Shoulder = 0;
+			Vertex = 0;
 		}
 		if (Presentation ==3) {
 			Breech = 0;
 			Brow =0;
 			Face =1;
 			Shoulder = 0;
+			Vertex =0;
 		}
 		if (Presentation ==4) {
 			Breech = 0;
 			Brow =0;
 			Face =0;
 			Shoulder = 1;
+			Vertex = 0;
 		}
 		if (Presentation ==5) {
 			Breech = 0;
 			Brow =0;
 			Face =0;
 			Shoulder =0;
-			NoneoftheAbove3 = 1
+			Vertex = 1;
 		}
 	}
 }
@@ -675,7 +679,7 @@ Sub-saharan Africa<br>
 <input type ="radio" id="Presentation2" name = "Presentation" value="2">Brow<br>
 <input type ="radio" id="Presentation3" name = "Presentation" value="3">Face<br>
 <input type ="radio" id="Presentation4" name = "Presentation" value="4">Shoulder<br>
-<input type ="radio" id="Presentation5" name = "Presentation" value="5">None of the Above<br>
+<input type ="radio" id="Presentation5" name = "Presentation" value="5">Vertex<br>
 </p>
 
 
