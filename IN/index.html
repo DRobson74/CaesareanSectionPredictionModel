@@ -40,6 +40,9 @@ function calculate() {
 	var SouthEastAsia;			// South East Asia
 	var NorthEastAsia;			// North East Asia
 	var NoneoftheAbove1;			// None of the Above
+	var MaritalStatus		= 0;	// Marital Status
+	var MarriedDefacto			// Married & Defacto
+	var NoneoftheAbove3			// None of the Above
 	var AntenatalCare		= 0;	// Antenatal Care Used
 	var PublicMidwife;			// Public Midwife
 	var GP;					// GP
@@ -47,14 +50,9 @@ function calculate() {
 	var NoneoftheAbove2;			// None of the Above
 	var DeliveryataPrivateHospital	= 2; 	// Delivery at a Private Hospital
 	var likelihood;				// Actual prediction of CSD
-	var Asthma			= 2;	// Asthma
 	var TypeIDiabetesMellitus	= 2;	// Type I Diabetes Mellitus
 	var TypeIIDiabetesMellitus	= 2;	// Type II Diabetes Mellitus
-	var NPA				= 2;	// Non-Pharmacological Analgesia
-	var PA				= 2;	// Pharmacological Analgesia
 	var CTG				= 2;	// CTG
-	var FSE				= 2;	// FSE
-	var GD				= 2;	// GD
 	var PreEc			= 2;	// PreEc
 	var GestHTN			= 2;	// GestHTN
 	var AROM 			= 2;	// Artificial Rupture of Membranes
@@ -167,6 +165,26 @@ if (MaternalCountryofBirth == 0) {
 		return;
 }
 
+// Checks to see which radiobutton is selected in MaritalStatus.
+for (i = 1; i <= 2; i++) {
+radioButton = document.getElementById("MaritalStatus" + i);
+	if (radioButton.checked == true) {
+		//Assigns value according to which radio button was selected.
+		MaritalStatus = radioButton.value;
+		if (MaritalStatus ==1) {
+		MarriedDefacto =1;
+		NoneoftheAbove3 =0; 
+		}
+		if (MaritalStatus ==2) {
+		MarriedDefacto =0;
+		NoneoftheAbove3 =1; 
+	}
+
+}
+if (MaritalStatus == 0) {
+		alert("No Marital Status is selected!");
+		return;
+}
 
 
 // Checks to see which radiobutton is selected in DeliveryataPrivateHospital.
@@ -216,21 +234,6 @@ radioButton = document.getElementById("AntenatalCare" + i);
 if (AntenatalCare == 0) {
 		alert("No Antenatal Care selected!");
 		return;
-}
-
-
-
-// Checks to see which radiobutton is selected in Asthma.
-	for (i = 1; i <= 2; i++) {				
-	radioButton = document.getElementById("Asthma" + i);
-		if (radioButton.checked == true) {
-			// Assigns value according to which radio button was selected.
-			Asthma = radioButton.value; 
-		}
-	}
-if (Asthma == 2) {
-	alert("No Asthma status selected!");
-	return;
 }
 
 
@@ -288,35 +291,7 @@ if (Prost == 2) {
 	alert ("No Prostaglandins status selected!");
 	return;
 }
-
-
-// Checks to see which radiobutton is selected in NPA.
-	for (i = 1; i <= 2; i++) {				
-	radioButton = document.getElementById("NPA" + i);
-		if (radioButton.checked == true) {
-			// Assigns value according to which radio button was selected.
-			NPA = radioButton.value; 
-		}
-	}
-if (NPA == 2) {
-	alert ("No Non-Pharmacological Analgesia status selected!");
-	return;
-}
-
-
-// Checks to see which radiobutton is selected in PA.
-	for (i = 1; i <= 2; i++) {				
-	radioButton = document.getElementById("PA" + i);
-		if (radioButton.checked == true) {
-			// Assigns value according to which radio button was selected.
-			PA = radioButton.value; 
-		}
-	}
-if (PA == 2) {
-	alert ("No Pharmacological Analgesia status selected!");
-	return;
-}
-
+	
 
 // Checks to see which radiobutton is selected in CTG.
 	for (i = 1; i <= 2; i++) {				
@@ -328,20 +303,6 @@ if (PA == 2) {
 	}
 if (CTG == 2) {
 	alert ("No CTG status selected!");
-	return;
-}
-
-
-// Checks to see which radiobutton is selected in FSE.
-	for (i = 1; i <= 2; i++) {				
-	radioButton = document.getElementById("FSE" + i);
-		if (radioButton.checked == true) {
-			// Assigns value according to which radio button was selected.
-			FSE = radioButton.value; 
-		}
-	}
-if (FSE == 2) {
-	alert ("No Foetal Scalp Electrode status selected!");
 	return;
 }
 
@@ -373,21 +334,6 @@ if (PreEc == 2) {
 	alert ("No Pre-eclampsia status selected!");
 	return;
 }
-
-
-// Checks to see which radiobutton is selected in GD.
-	for (i = 1; i <= 2; i++) {				
-	radioButton = document.getElementById("GD" + i);
-		if (radioButton.checked == true) {
-			// Assigns value according to which radio button was selected.
-			GD = radioButton.value; 
-		}
-	}
-if (GD == 2) {
-	alert ("No Gestational Diabetes status selected!");
-	return;
-}
-
 
 
 // Checks to see which radiobutton is selected in Presentation.
@@ -442,8 +388,8 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -1.101 + (0.0643*Age) + (0.0518*BMI) + (0.211*IndigenousorTorresStraitIslander) + (0.174*AssistedConception) + (-0.180*NorthAfricaMiddleEast) + (-0.168*SouthEastAsia) + (0.334*SouthernCentralAsia) + (0.212*SubSaharanAfrica) + (0.457*DeliveryataPrivateHospital) +
-(-0.194*PublicMidwife) + (-0.287*GP) + (0.191*Asthma) + (1.03*TypeIDiabetesMellitus) + (0.742*TypeIIDiabetesMellitus) +  (AROM*-0.278) + (0.259*Prost) + + (-0.266*CTG) + (-0.661*FSE) + (0.122*GD) + (0.396*GestHTN) + (PreEc*0.739) + (-1.133*NPA) + (-0.313*PA)  + (2.88*Breech) + (2.59*Brow) + (1.99*Face) + (2.21*Shoulder);
+varx = -3.827 + (0.0651*Age) + (0.0518*BMI) + (0.256*IndigenousorTorresStraitIslander) + (0.213*AssistedConception) + (0.334*NorthAfricaMiddleEast) + (0.393*SouthEastAsia) + (0.534*SouthernCentralAsia) + (0.269*SubSaharanAfrica) + (0.211*NorthEastAsia) + (0.375*DeliveryataPrivateHospital) +
+(-0.388*PublicMidwife) + (-0.412*GP) + (-0.192*PublicMedPrac) + (1.34*TypeIDiabetesMellitus) + (0.625*TypeIIDiabetesMellitus) +  (AROM*-0.376) + (0.166*Prost) + (-0.463*CTG) + (0.377*GestHTN) + (PreEc*0.923) + (3.69*Breech) + (2.83*Brow) + (2.34*Face) + (2.69*Shoulder) + (0.328*Vertex);
 
 vary = 1 + Math.exp(varx)
 
@@ -594,6 +540,10 @@ Sub-saharan Africa<br>
 <input type ="radio" id="MaternalCountryofBirth6" name = "MaternalCountryofBirth" value="6">None of the Above<br>
 </p>
 
+<p> Marital Status:<br />
+<input type = "radio" id="MaritalStatus1" name = "MaritalStatus" value="1">Married & Defacto<br>
+<input type = "radio" id="MaritalStatus2" name = "MaritalStatus" value="2">NoneoftheAbove3<br>
+</p>
 
 <p> Delivery at a Private Hospital:<br />
 <input type="radio" id="DeliveryataPrivateHospital1" name = "DeliveryataPrivateHospital" value="1">Yes<br> 
@@ -606,11 +556,6 @@ Sub-saharan Africa<br>
 <input type ="radio" id="AntenatalCare2" name = "AntenatalCare" value="2">GP<br>
 <input type ="radio" id="AntenatalCare3" name = "AntenatalCare" value="3">Public Medical Practitioner<br>
 <input type ="radio" id="AntenatalCare4" name = "AntenatalCare" value="4">None of the Above<br>
-</p>
-
-<p> Asthma:<br />
-<input type="radio" id="Asthma1" name = "Asthma" value="1">Yes<br>
-<input type="radio" id="Asthma2" name = "Asthma" value="0">No<br>
 </p>
 
 
@@ -636,25 +581,11 @@ Sub-saharan Africa<br>
 <input type="radio" id="Prost2" name = "Prost" value="0">No<br>
 </p>
 
-<p> Non-Pharmacological Analgesia:<br />
-<input type="radio" id="NPA1" name = "NPA" value="1">Yes<br>
-<input type="radio" id="NPA2" name = "NPA" value="0">No<br>
-</p>
-
-<p> Pharmacological Analgesia:<br />
-<input type="radio" id="PA1" name = "PA" value="1">Yes<br>
-<input type="radio" id="PA2" name = "PA" value="0">No<br>
-</p>
-
 <p> CTG:<br />
 <input type="radio" id="CTG1" name = "CTG" value="1">Yes<br>
 <input type="radio" id="CTG2" name = "CTG" value="0">No<br>
 </p>
 
-<p> Foetal Scalp Electrode:<br />
-<input type="radio" id="FSE1" name = "FSE" value="1">Yes<br>
-<input type="radio" id="FSE2" name = "FSE" value="0">No<br>
-</p>
 
 <p> Gestational Hypertension:<br />
 <input type="radio" id="GestHTN1" name = "GestHTN" value="1">Yes<br>
@@ -665,12 +596,6 @@ Sub-saharan Africa<br>
 <p> Pre-eclampsia:<br />
 <input type="radio" id="PreEc1" name = "PreEc" value="1">Yes<br>
 <input type="radio" id="PreEc2" name = "PreEc" value="0">No<br>
-</p>
-
-
-<p> Gestational Diabetes:<br />
-<input type="radio" id="GD1" name = "GD" value="1">Yes<br>
-<input type="radio" id="GD2" name = "GD" value="0">No<br>
 </p>
 
 
