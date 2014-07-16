@@ -43,6 +43,7 @@ function calculate() {
 	var AntenatalCare		= 0;	// Antenatal Care Used
 	var PublicMidwife;			// Public Midwife
 	var GP;					// GP
+	var PublicMedPrac;			// Public Medical Practitioner
 	var NoneoftheAbove2;			// None of the Above
 	var DeliveryataPrivateHospital	= 2; 	// Delivery at a Private Hospital
 	var likelihood;				// Actual prediction of CSD
@@ -184,7 +185,7 @@ if (DeliveryataPrivateHospital == 2) {
 
 
 // Checks to see which radiobutton is selected in AntenatalCare.
-for (i = 1; i <= 3; i++) {
+for (i = 1; i <= 4; i++) {
 radioButton = document.getElementById("AntenatalCare" + i);
 	if (radioButton.checked == true) {
 		//Assigns value according to which radio button was selected.
@@ -192,14 +193,22 @@ radioButton = document.getElementById("AntenatalCare" + i);
 		if (AntenatalCare ==1) {
 			PublicMidwife =1;
 			GP =0;
+			PublicMedPrac =0;
 		}
 		if (AntenatalCare ==2) {
 			PublicMidwife =0;
 			GP =1;
+			PublicMedPrac =0;
 		}
 		if (AntenatalCare ==3) {
 			PublicMidwife =0;
 			GP =0;
+			PublicMedPrac =1;
+		}
+		if (AntenatalCare ==4) {
+			PublicMidwife =0;
+			GP =0;
+			PublicMedPrac =0;
 			NoneoftheAbove2 =1;
 		}
 	}
@@ -591,7 +600,8 @@ Sub-saharan Africa<br>
 <p> Antenatal Care:<br />
 <input type ="radio" id="AntenatalCare1" name = "AntenatalCare" value="1">Public Midwife<br>
 <input type ="radio" id="AntenatalCare2" name = "AntenatalCare" value="2">GP<br>
-<input type ="radio" id="AntenatalCare3" name ="AntenatalCare" value="3">None of the Above<br>
+<input type ="radio" id="AntenatalCare3" name = "AntenatalCare" value="3">Public Medical Practitioner<br>
+<input type ="radio" id="AntenatalCare3" name = "AntenatalCare" value="4">None of the Above<br>
 </p>
 
 <p> Asthma:<br />
