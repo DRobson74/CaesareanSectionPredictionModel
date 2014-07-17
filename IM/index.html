@@ -32,6 +32,7 @@ function calculate() {
         var selectedAge;                                // Age of the Mother
         var BMI;                                        // BMI
         var IndigenousorTorresStraitIslander = 2;// Indigenous or Torres Strait Islander Mother
+        var Smoker = 2; 				// Smoker
         var AssistedConception                = 2;         // If assisted conception was used
         var MaternalCountryofBirth        = 0;        // Maternal Country of Birth
         var NorthEastAsia;                        // North East Asia
@@ -99,6 +100,21 @@ radioButton = document.getElementById("indig" + i);
 }
 if (IndigenousorTorresStraitIslander == 2) {
 		alert("No Indigenous status selected!");
+		return;
+
+}
+
+
+// Checks to see which radiobutton is selected in Smoker.
+for (i = 1; i <= 2; i++) {				
+radioButton = document.getElementById("Smoker" + i);
+	if (radioButton.checked == true) {
+		// Assigns value according to which radio button was selected.
+		Smoker = radioButton.value; 
+	}
+}
+if (Smoker == 2) {
+		alert("No Smoker status selected!");
 		return;
 
 }
@@ -525,7 +541,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (-0.246*NorthEastAsia) + (0.303*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (-0.246*NorthEastAsia) + (0.303*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
 
 vary = 1 + Math.exp(varx)
 
@@ -662,6 +678,11 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 <p> Indigenous &/or Torres Strait Islander: <br />
 <input type="radio" id="indig1" name = "indig" value="1">Yes<br>
 <input type = "radio" id="indig2" name = "indig" value="0">No<br>
+</p>
+
+<p> Smoker: <br />
+<input type="radio" id="Smoker1" name = "Smoker" value="1">Yes<br>
+<input type="radio" id="Smoker2" name = "Smoker" value="2">No<br>
 </p>
 
 <p> Assisted Conception:<br />
