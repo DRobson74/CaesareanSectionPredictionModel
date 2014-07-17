@@ -30,6 +30,7 @@ function calculate() {
         var radiobutton;                        // Used to determine if checkbox is checked
         var button;                                // Used to select a yes or no answer
         var selectedAge;                                // Age of the Mother
+        var BMI;                                        // BMI
         var AssistedConception                = 2;         // If assisted conception was used
         var MaternalCountryofBirth        = 0;        // Maternal Country of Birth
         var NorthEastAsia;                        // North East Asia
@@ -82,7 +83,9 @@ function calculate() {
 DropDownBox = document.getElementById("Age");
 Age = DropDownBox.options[DropDownBox.selectedIndex].text;
 
-
+// Check patient BMI dropdown box.
+DropDownBox = document.getElementById("BMI");
+BMI = DropDownBox.options[DropDownBox.selectedIndex].text;
 
 // Checks to see which radiobutton is selected in AssistedConception.
 for (i = 1; i <= 2; i++) {                                
@@ -506,7 +509,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -0.598 + (0.037*Age) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (-0.246*NorthEastAsia) + (0.303*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (-0.246*NorthEastAsia) + (0.303*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
 
 vary = 1 + Math.exp(varx)
 
@@ -536,7 +539,7 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 
       <header>
         <h1>Caesarean Section Prediction Model</h1>
-        <p>Intrapartum - Multiparous Women</p>
+        <p>Early Labour - Multiparous Women</p>
       </header>
 
       <div id="banner">
@@ -596,6 +599,49 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 </select>
 </p>
 
+<p> BMI:
+<select id="BMI">
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+    <option>15</option>
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>
+    <option>24</option>
+    <option>25</option>
+    <option>26</option>
+    <option>27</option>
+    <option>28</option>
+    <option>29</option>
+    <option>30</option>
+    <option>31</option>
+    <option>32</option>
+    <option>33</option>
+    <option>34</option>
+    <option>35</option>
+    <option>36</option>
+    <option>37</option>
+    <option>38</option>
+    <option>39</option>
+    <option>40</option>
+    <option>41</option>
+    <option>42</option>
+    <option>43</option>
+    <option>44</option>
+    <option>45</option>
+    <option>46</option>
+    <option>47</option>
+    <option>48</option>
+    <option>49</option>
+    <option>>50</option>
+</select>
+</p>
 
 <p> Assisted Conception:<br />
 <input type="radio" id="AssistedConception1" name = "AssistedConception" value="1">Yes<br>
