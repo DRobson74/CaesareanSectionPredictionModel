@@ -35,7 +35,8 @@ function calculate() {
         var Smoker = 2; 				// Smoker
         var AssistedConception                = 2;         // If assisted conception was used
         var MaternalCountryofBirth        = 0;        // Maternal Country of Birth
-        var NorthEastAsia;                        // North East Asia
+        var SouthEastAsia;                        // South East Asia
+        var SouthernCentralAsia;			// Southern & Central Asia
         var SubSaharanAfrica;                        // Sub Saharan Africa
         var NoneoftheAbove1;                        // None of the Above
         var MaritalStatus                = 0;        // Marital Status of mother
@@ -134,22 +135,30 @@ if (AssistedConception == 2) {
 
 
 // Checks to see which radiobutton is selected in MaternalCountryofBirth.
-for (i = 1; i <= 3; i++) {
+for (i = 1; i <= 4; i++) {
 radioButton = document.getElementById("MaternalCountryofBirth" + i);
         if (radioButton.checked == true) {
                 //Assigns value according to which radio button was selected.
                 MaternalCountryofBirth = radioButton.value;
                 if (MaternalCountryofBirth ==1) {
-                NorthEastAsia =1;
+                SouthEastAsia =1;
+                SouthernCentralAsia =0;
                 SubSaharanAfrica =0;
                 }
                 if (MaternalCountryofBirth ==2) {
                 NorthEastAsia =0;
                 SubSaharanAfrica =1;
+                SouthernCentralAsia =0;
                 }
                 if (MaternalCountryofBirth ==3) {
                 NorthEastAsia =0;
                 SubSaharanAfrica =0;
+                SouthernCentralAsia =1;
+                }
+                if (MaternalCountryofBirth ==4) {
+                NorthEastAsia =0;
+                SubSaharanAfrica =0;
+                SouthernCentralAsia =0;
                 NoneoftheAbove1 =1;
                 }
                 
@@ -541,7 +550,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (-0.246*NorthEastAsia) + (0.303*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
 
 vary = 1 + Math.exp(varx)
 
@@ -691,11 +700,11 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 </p>
 
 
-
 <p> Maternal Country of Birth:<br />
-<input type ="radio" id="MaternalCountryofBirth1" name = "MaternalCountryofBirth" value="1">North East Asia<br>
-<input type ="radio" id="MaternalCountryofBirth2" name = "MaternalCountryofBirth" value="2">Sub Saharan Africa <br>
-<input type ="radio" id="MaternalCountryofBirth3" name = "MaternalCountryofBirth" value="3">None of the Above<br>
+<input type ="radio" id="MaternalCountryofBirth1" name = "MaternalCountryofBirth" value="1">South East Asia<br>
+<input type ="radio" id="MaternalCountryofBirth2" name = "MaternalCountryofBirth" value="2">Sub Saharan Africa<br>
+<input type ="radio" id="MaternalCountryofBirth3" name = "MaternalCountryofBirth" value="3">Southern & Central Asia<br>
+<input type ="radio" id="MaternalCountryofBirth4" name = "MaternalCountryofBirth" value="4">None of the Above<br>
 </p>
 
 
