@@ -40,7 +40,7 @@ function calculate() {
         var SubSaharanAfrica;                        // Sub Saharan Africa
         var NoneoftheAbove1;                        // None of the Above
         var MaritalStatus                = 0;        // Marital Status of mother
-        var NeverMarried;                        // Never Married
+        var MarriedDefacto;                        // Married & Defacto
         var NoneoftheAbove2;                        // None of the Above
         var DeliveryataPrivateHospital        = 2;         // Delivery at a Private Hospital
         var AntenatalCare                = 0;        // Antenatal Care Used
@@ -178,10 +178,10 @@ radioButton = document.getElementById("MaritalStatus" + i);
                 //Assigns value according to which radio button was selected.
                 MaritalStatus = radioButton.value;
                 if (MaritalStatus ==1) {
-                        NeverMarried =1;
+                        MarriedDefacto =1;
                 }
                 if (MaritalStatus ==2) {
-                        NeverMarried = 0;
+                        MarriedDefacto = 0;
                         NoneoftheAbove2 = 1;
                         }
         }
@@ -550,7 +550,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*NeverMarried) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*MarriedDefacto) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
 
 vary = 1 + Math.exp(varx)
 
@@ -709,7 +709,7 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 
 
 <p> Marital Status:<br />
-<input type ="radio" id="MaritalStatus1" name = "MaritalStatus" value="1">Never Married<br>
+<input type ="radio" id="MaritalStatus1" name = "MaritalStatus" value="1">Married & Defacto<br>
 <input type ="radio" id="MaritalStatus2" name = "MaritalStatus" value="2">None of the Above<br>
 </p>
 
