@@ -46,6 +46,7 @@ function calculate() {
         var AntenatalCare                = 0;        // Antenatal Care Used
         var PublicMedPrac;                        // Public Medical Practitioner
         var PublicMidwife;                        // Public Midwife
+        var PrivateMidwife;			// Private Midwife
         var GP;                                        // GP
         var NoneoftheAbove3;                        // None of the Above
         var Asthma                        = 2;        // Asthma
@@ -210,7 +211,7 @@ if (DeliveryataPrivateHospital == 2) {
 
 
 // Checks to see which radiobutton is selected in AntenatalCare.
-for (i = 1; i <= 4; i++) {
+for (i = 1; i <= 5; i++) {
 radioButton = document.getElementById("AntenatalCare" + i);
         if (radioButton.checked == true) {
                 //Assigns value according to which radio button was selected.                
@@ -218,22 +219,32 @@ radioButton = document.getElementById("AntenatalCare" + i);
                 if (AntenatalCare ==1) {
                         PublicMedPrac = 1;
                         PublicMidwife =0;
+                        Private Midwife =0;
                         GP =0;
                 }
                 if (AntenatalCare ==2) {
                         PublicMedPrac = 0;
                         PublicMidwife =1;
+                        PrivateMidwife =-;
                         GP =0;
                 }
                 if (AntenatalCare ==3) {
                         PublicMedPrac = 0;
                         PublicMidwife =0;
                         GP =1;
+                        PrivateMidwife =0;
                 }
                 if (AntenatalCare ==4) {
                         PublicMedPrac = 0;
                         PublicMidwife =0;
                         GP =0;
+                        PrivateMidwife =1;
+                }
+                if (AntenatalCare ==5) {
+                        PublicMedPrac = 0;
+                        PublicMidwife =0;
+                        GP =0;
+                        PrivateMidwife =0;
                         NoneoftheAbove3 =1;
                 }
         }
@@ -550,7 +561,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*MarriedDefacto) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-0.492*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*MarriedDefacto) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-1.22*PrivateMidwife) + (-0.492*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
 
 vary = 1 + Math.exp(varx)
 
@@ -691,7 +702,7 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 
 <p> Smoker: <br />
 <input type="radio" id="Smoker1" name = "Smoker" value="1">Yes<br>
-<input type="radio" id="Smoker2" name = "Smoker" value="2">No<br>
+<input type="radio" id="Smoker2" name = "Smoker" value="0">No<br>
 </p>
 
 <p> Assisted Conception:<br />
@@ -724,8 +735,9 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 <p> Antenatal Care:<br />
 <input type ="radio" id="AntenatalCare1" name = "AntenatalCare" value="1">Public Medical Practitioner<br>
 <input type ="radio" id="AntenatalCare2" name = "AntenatalCare" value="2">Public Midwife<br>
+<input type ="radio" id="AntenatalCare4" name = "AntenatalCare" value="4">Private Midwife<br>
 <input type ="radio" id="AntenatalCare3" name = "AntenatalCare" value="3">GP<br>
-<input type ="radio" id="AntenatalCare4" name ="AntenatalCare" value="4">None of the Above<br>
+<input type ="radio" id="AntenatalCare5" name ="AntenatalCare" value="5">None of the Above<br>
 </p>
 
  
