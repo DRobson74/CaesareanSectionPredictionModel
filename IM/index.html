@@ -50,7 +50,6 @@ function calculate() {
         var GP;                                        // GP
         var NoneoftheAbove3;                        // None of the Above
         var Asthma                        = 2;        // Asthma
-        var Depression                        = 2;        // Depression
         var PreexistingHypertension        = 2;        // Pre-existingHypertension
         var TypeIDiabetesMellitus        = 2;        // Type I Diabetes Mellitus
         var TypeIIDiabetesMellitus        = 2;        // Type II Diabetes Mellitus
@@ -62,9 +61,7 @@ function calculate() {
         var NoneoftheAbove4;                        // None of the Above
         var InducedLabour                = 2;        // Induced Labour
         var AROM                        = 2;        // Artificial Rupture of Membranes
-        var NPA                                = 2;        // Non-Pharmacological Analgesia
         var CTG                                = 2;        // CTG
-        var FSE                                = 2;        // FSE
         var GD                                = 2;        // GD
         var PreEc                        = 2;        // PreEc
         var GestHTN                        = 2;        // GestHTN
@@ -272,22 +269,6 @@ if (Asthma == 2) {
 
 
 
-
-// Checks to see which radiobutton is selected in Depression.
-        for (i = 1; i <= 2; i++) {                                
-        radioButton = document.getElementById("Depression" + i);
-                if (radioButton.checked == true) {
-                        // Assigns value according to which radio button was selected.
-                        Depression = radioButton.value;
-                }
-        }
-if (Depression == 2) {
-        alert ("No Depression status selected!");
-        return;
-}
-
-
-
 // Checks to see which radiobutton is selected in PreexistingHypertension.
         for (i = 1; i <= 2; i++) {                                
         radioButton = document.getElementById("PreexistingHypertension" + i);
@@ -405,20 +386,6 @@ if (AROM == 2) {
 }
 
 
-// Checks to see which radiobutton is selected in NPA.
-        for (i = 1; i <= 2; i++) {                                
-        radioButton = document.getElementById("NPA" + i);
-                if (radioButton.checked == true) {
-                        // Assigns value according to which radio button was selected.
-                        NPA = radioButton.value;
-                }
-        }
-if (NPA == 2) {
-        alert ("No Non-Pharmacological Analgesia status selected!");
-        return;
-}
-
-
 // Checks to see which radiobutton is selected in CTG.
         for (i = 1; i <= 2; i++) {                                
         radioButton = document.getElementById("CTG" + i);
@@ -429,20 +396,6 @@ if (NPA == 2) {
         }
 if (CTG == 2) {
         alert ("No CTG status selected!");
-        return;
-}
-
-
-// Checks to see which radiobutton is selected in FSE.
-        for (i = 1; i <= 2; i++) {                                
-        radioButton = document.getElementById("FSE" + i);
-                if (radioButton.checked == true) {
-                        // Assigns value according to which radio button was selected.
-                        FSE = radioButton.value;
-                }
-        }
-if (FSE == 2) {
-        alert ("No Foetal Scalp Electrode status selected!");
         return;
 }
 
@@ -503,7 +456,7 @@ if (AH == 2) {
 
 
 // Checks to see which radiobutton is selected in Presentation.
-for (i = 1; i <= 6; i++) {
+for (i = 1; i <= 5; i++) {
 radioButton = document.getElementById("Presentation" + i);
         if (radioButton.checked == true) {
                 //Assigns value according to which radio button was selected.
@@ -543,14 +496,6 @@ radioButton = document.getElementById("Presentation" + i);
                         Vertex =0;
                         Shoulder = 1;
                 }
-                if (Presentation ==6) {
-                        Breech = 0;
-                        Brow =0;
-                        Face =0;
-                        Vertex =0;
-                        Shoulder = 0;
-                        NoneoftheAbove5 = 1
-                }
         }
 }
 if (Presentation == 0) {
@@ -561,7 +506,7 @@ if (Presentation == 0) {
 
 //Calculate LIKELIHOOD.
 
-varx = -0.598 + (0.037*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.444*AssistedConception) + (0.372*Asthma) + (0.310*Depression) + (0.448*PreexistingHypertension) + (1.733*TypeIDiabetesMellitus) + (1.401*TypeIIDiabetesMellitus) + (1.119*ForcepsDelivery) + (0.729*VacuumDelivery) + (4.111*LowerCaesareanSectionDelivery) + (5.253*ClassicalCaesareanSectionDelivery) + (0.139*MarriedDefacto) + (0.145*DeliveryataPrivateHospital) + (-0.156*PublicMedPrac) + (-0.554*PublicMidwife) + (-1.22*PrivateMidwife) + (-0.492*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(InducedLabour*-0.254) + (AROM*-1.120) + (CTG*-0.992) + (FSE*-0.606) + (GD*0.322) + (GestHTN*0.554) + (PreEc*1.566) + (AH*0.615) + (Breech*2.404) + (Brow*2.302) + (Face*0.939) + (Vertex*-0.945) + (Shoulder*3.426) + (1.856*NPA);
+varx = -2.783 + (0.0386*Age) + (0.0398*BMI) + (0.129*IndigenousorTorresStraitIslander) + (0.109*Smoker) + (0.482*AssistedConception) + (0.319*Asthma) + (0.441*PreexistingHypertension) + (1.91*TypeIDiabetesMellitus) + (1.39*TypeIIDiabetesMellitus) + (1.17*ForcepsDelivery) + (0.726*VacuumDelivery) + (4.26*LowerCaesareanSectionDelivery) + (5.42*ClassicalCaesareanSectionDelivery) + (-0.151*MarriedDefacto) + (0.361*DeliveryataPrivateHospital) + (-0.234*PublicMedPrac) + (-0.627*PublicMidwife) + (-1.22*PrivateMidwife) + (-0.509*GP) + (0.327*SouthhEastAsia) +(0.298*SouthernCentralAsia) +  (0.372*SubSaharanAfrica) +(-0.297*InducedLabour) + (AROM*-1.315) + (CTG*-1.246) + (GD*0.351) + (GestHTN*0.495) + (PreEc*1.66) + (AH*0.722) + (Breech*2.94) + (Brow*2.38) + (Face*1.05) + (Vertex*-0.780) + (Shoulder*3.70);
 
 vary = 1 + Math.exp(varx)
 
@@ -747,12 +692,6 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 </p>
 
 
-<p> Depression:<br />
-<input type="radio" id="Depression1" name = "Depression" value="1">Yes<br>
-<input type="radio" id="Depression2" name = "Depression" value="0">No<br>
-</p>
-
-
 <p> Pre-existing Hypertension:<br />
 <input type="radio" id="PreexistingHypertension1" name = "PreexistingHypertension" value="1">Yes<br>
 <input type="radio" id="PreexistingHypertension2" name = "PreexistingHypertension" value="0">No<br>
@@ -792,20 +731,11 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 </p>
 
 
-<p> Non-Pharmacological Analgesia:<br />
-<input type="radio" id="NPA1" name = "NPA" value="1">Yes<br>
-<input type="radio" id="NPA2" name = "NPA" value="0">No<br>
-</p>
-
 <p> CTG:<br />
 <input type="radio" id="CTG1" name = "CTG" value="1">Yes<br>
 <input type="radio" id="CTG2" name = "CTG" value="0">No<br>
 </p>
 
-<p> Foetal Scalp Electrode:<br />
-<input type="radio" id="FSE1" name = "FSE" value="1">Yes<br>
-<input type="radio" id="FSE2" name = "FSE" value="0">No<br>
-</p>
 
 <p> Gestational Hypertension:<br />
 <input type="radio" id="GestHTN1" name = "GestHTN" value="1">Yes<br>
@@ -836,7 +766,6 @@ alert("Your likelihood of caesarean section delivery is " + likelihood + "%.");
 <input type ="radio" id="Presentation3" name = "Presentation" value="3">Face<br>
 <input type ="radio" id="Presentation4" name = "Presentation" value="4">Vertex<br>
 <input type ="radio" id="Presentation5" name = "Presentation" value="5">Shoulder<br>
-<input type ="radio" id="Presentation6" name = "Presentation" value="6">None of the Above<br>
 </p>
 
 <input type="button" value="Calculate" onclick="calculate();"/>
